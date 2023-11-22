@@ -3,28 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    public function allCategories()
+    public function index()
     {
-        $categories = [
-            'CELULARES',
-            'INFORMÁTICA',
-            'MÓVEIS', 
-            'AUTOMOTIVA', 
-            'LIVROS', 
-            'BELEZA', 
-            'ESPORTE', 
-            'LUXO'
-        ];
-
-        $html = '<ul>';
-        foreach ($categories as $category) {
-            $html .= "<li>$category</li>";
-        }
-        $html .= '</ul>';
-
-        echo $html;
-    } 
+        $categories = Category::all();
+        return view('index', compact('categories'));
+    }
 }
