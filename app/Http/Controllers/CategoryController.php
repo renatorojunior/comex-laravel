@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('name')->get();
         return view('categories.index', compact('categories'));
     }
 
@@ -20,12 +20,15 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        // Nova categoria
-        $category = new Category;
-        $category->name = $request->input('name');
-        $category->save();
+        // Criando Validação.
+        $request->validate([
+            'name' => 'required|min:3',
+        ]);
 
-        // Redirecionando para '/categories.index'
-        return redirect('/categories');
+        // Mass Assignment.
+        Category::create(['name' => $request->input('name')]);
+
+        // Redirecionando com mensagem de sucesso.
+        return redirect()->route('categories.index')->with('success', 'Categoria adicionada com sucesso!');
     }
 }

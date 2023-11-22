@@ -3,7 +3,7 @@
 @section('content')
     <h1>Adicionar Categoria</h1>
 
-    <form action="{{ route('categories.save') }}" method="post">
+    <form action="{{ route('categories.store') }}" method="post">
         @csrf
         <label for="name">Nome:</label>
         <input type="text" name="name" required>
