@@ -13,6 +13,7 @@
         @foreach($categories as $category)
             <li>
                 {{ $category->name }}
+                <a href="{{ route('categories.edit', $category->id) }}">Editar</a>
                 <a href="{{ route('categories.confirm-delete', $category) }}">Remover</a>
             </li>
         @endforeach

@@ -47,4 +47,23 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->route('categories.index')->with('success', 'Categoria removida com sucesso!');
     }
+
+    public function edit(Category $category)
+    {
+        return view('categories.edit', compact('category'));
+    }
+
+    public function update(Request $request, Category $category)
+    {
+        // Validação.
+        $request->validate([
+            'name' => 'required|min:3',
+        ]);
+
+        // Atualizando a categoria.
+        $category->update(['name' => $request->input('name')]);
+
+        // Redirecionando com mensagem de sucesso.
+        return redirect()->route('categories.index')->with('success', 'Categoria atualizada com sucesso!');
+    }
 }
