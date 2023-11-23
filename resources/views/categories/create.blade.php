@@ -9,4 +9,6 @@
         <input type="text" name="name" required>
         <button type="submit">Adicionar</button>
     </form>
+
+    <a href="{{ route('categories.index') }}">Cancelar</a>
 @endsection

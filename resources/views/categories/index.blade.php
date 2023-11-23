@@ -11,7 +11,10 @@
 
     <ul>
         @foreach($categories as $category)
-            <li>{{ $category->name }}</li>
+            <li>
+                {{ $category->name }}
+                <a href="{{ route('categories.confirm-delete', $category) }}">Remover</a>
+            </li>
         @endforeach
     </ul>
 

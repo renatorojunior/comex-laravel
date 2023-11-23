@@ -31,4 +31,20 @@ class CategoryController extends Controller
         // Redirecionando com mensagem de sucesso.
         return redirect()->route('categories.index')->with('success', 'Categoria adicionada com sucesso!');
     }
+
+    public function destroy(Category $category)
+    {
+        return redirect()->route('categories.confirm-delete', $category);
+    }
+
+    public function confirmDelete(Category $category)
+    {
+        return view('categories.confirm-delete', compact('category'));
+    }
+
+    public function delete(Category $category)
+    {
+        $category->delete();
+        return redirect()->route('categories.index')->with('success', 'Categoria removida com sucesso!');
+    }
 }

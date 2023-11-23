@@ -8,4 +8,10 @@ Route::get('/', function () {
 });
 
 Route::resource('categories', CategoryController::class)
-    ->only(['index', 'create', 'store']);
+    ->only(['index', 'create', 'store', 'destroy']);
+Route::get('/categories/{category}/confirm-delete', 
+    [CategoryController::class, 'confirmDelete'])
+    ->name('categories.confirm-delete');
+Route::delete('/categories/{category}/delete', 
+    [CategoryController::class, 'delete'])
+    ->name('categories.delete');
