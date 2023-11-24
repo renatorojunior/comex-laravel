@@ -1,15 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Confirmar Exclusão</h1>
-
-    <p>Tem certeza que gostaria de excluir a Categoria '{{ $category->name }}'?</p>
-
-    <form action="{{ route('categories.delete', $category) }}" method="post" style="display: inline;">
-        @csrf
-        @method('DELETE')
-        <button type="submit">Excluir</button>
-    </form>
-
-    <a href="{{ route('categories.index') }}">Cancelar</a>
+    <div class="container">
+        <h1 class="modal-title">Confirmar Exclusão</h1>
+    
+        <p class="lead">Tem certeza que gostaria de excluir a Categoria <b>'{{ $category->name }}'</b>?</p>
+    
+        <form action="{{ route('categories.delete', $category) }}" method="post" style="display: inline;">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-dark" type="submit">Excluir</button>
+        </form>
+    
+        <a class="btn btn-primary" href="{{ route('categories.index') }}">Cancelar</a>
+    </div>
 @endsection

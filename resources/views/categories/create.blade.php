@@ -1,14 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Adicionar Categoria</h1>
+    <div class="container">
+        <h1 class="modal-title">Adicionar Categoria</h1>
 
-    <form action="{{ route('categories.store') }}" method="post">
-        @csrf
-        <label for="name">Nome:</label>
-        <input type="text" name="name" required>
-        <button type="submit">Adicionar</button>
-    </form>
+        <form class="row g-3" action="{{ route('categories.store') }}" method="post">
+            @csrf
+            <div class="col-auto">
+                <label class="form-control-plaintext" for="name">Nome:</label>
+            </div>
+            <div class="col-auto">
+                <input class="form-control" type="text" name="name" required>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-success mb-3" type="submit">Adicionar</button>
+            </div>
+        </form>
 
-    <a href="{{ route('categories.index') }}">Cancelar</a>
+        <a class="btn btn-primary" href="{{ route('categories.index') }}">Cancelar</a>
+    </div>
 @endsection
