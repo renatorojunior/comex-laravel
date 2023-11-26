@@ -1,16 +1,20 @@
 @extends('layouts.app')
 
+@php
+    $title = 'Categorias';
+@endphp
+
 @section('content')
-    <div class="container">
-        <h1 class="modal-title">Listagem de Categorias</h1>
+    <div class="container mt-4">
+        <h1 class="modal-title mb-4">Listagem de Categorias</h1>
     
         @if(session('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success mb-4">
                 {{ session('success') }}
             </div>
         @endif
     
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush mb-4">
             @foreach($categories as $category)
                 <li class="list-group-item hstack gap-3">                    
                         {{ $category->name }}                    

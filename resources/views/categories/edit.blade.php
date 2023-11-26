@@ -1,10 +1,14 @@
 @extends('layouts.app')
 
+@php
+    $title = 'Editar Categoria';
+@endphp
+
 @section('content')
-    <div class="container">
-        <h1 class="modal-title">Editar Categoria</h1>
+    <div class="container mt-4 mb-4">
+        <h1 class="modal-title mb-4">Editar Categoria</h1>
     
-        <form class="row g-3" action="{{ route('categories.update', $category->id) }}" method="post">
+        <form class="row g-3 mb-4" action="{{ route('categories.update', $category->id) }}" method="post">
             @csrf
             @method('PUT')
             <div class="col-auto">
