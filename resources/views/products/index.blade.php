@@ -21,6 +21,7 @@
             <th scope="col">Categoria</th>
             <th scope="col">Preço</th>
             <th scope="col">Estoque</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +31,10 @@
                 <td>{{ $product->category->name }}</td>
                 <td>R$ {{ number_format($product->price, 2) }}</td>
                 <td>{{ $product->quantity }}</td>
+                <td class="w-15">
+                    <a class="btn btn-secondary ms-auto" href="{{ route('products.edit', $product->id) }}">Editar</a>    
+                    <a class="btn btn-dark" href="{{ route('products.confirm-delete', $product->id) }}">Excluir</a>
+                </td>
             </tr>
         @endforeach
     </tbody>

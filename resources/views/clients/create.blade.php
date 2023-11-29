@@ -6,7 +6,7 @@ $title = 'Adicionar Cliente';
 
 @section('content')
     <div class="container mt-5">
-        <h1 class="model-title mb-4">Create Client</h1>
+        <h1 class="model-title mb-4">Adicionar Cliente</h1>
 
         @if(session('success'))
             <div class="alert alert-success mb-4">

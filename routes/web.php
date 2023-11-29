@@ -20,9 +20,9 @@ Route::delete('/categories/{category}/delete',
     ->name('categories.delete');
 
 // Rotas para 'Produtos' 
-Route::resource('products', ProductController::class)->only(['index', 'create', 'store']); 
-Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-Route::post('/products/save', [ProductController::class, 'store'])->name('products.store');
+Route::resource('products', ProductController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']); 
+Route::get('/products/{product}/confirm-delete', [ProductController::class, 'confirmDelete'])
+    ->name('products.confirm-delete');
 
 // Rotas para 'Clientes'
 Route::resource('clients', ClientController::class)->only(['index', 'create', 'store']);
