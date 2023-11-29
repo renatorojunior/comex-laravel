@@ -5,7 +5,7 @@
 @endphp
 
 @section('content')
-    <div class="container mt-4 mb-4">
+    <div class="container mt-5 mb-4">
         <h1 class="modal-title mb-4">Confirmar Exclusão</h1>
     
         <p class="lead mb-4">Tem certeza que gostaria de excluir a Categoria <b>'{{ $category->name }}'</b>?</p>

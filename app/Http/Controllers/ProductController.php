@@ -30,7 +30,7 @@ class ProductController extends Controller
             'quantity' => 'required|integer|min:0',
         ]);
 
-        //$request->merge(['price' => str_replace(',', '.', $request->input('price'))]);
+        
 
         Product::create($request->all());
 

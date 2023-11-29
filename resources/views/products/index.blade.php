@@ -5,7 +5,7 @@
 @endphp
 
 @section('content')
-    <div class="container mt-4">
+    <div class="container mt-5">
         <h1 class="model-title mb-4">Listagem de Produtos</h1>
     
         @if(session('success'))
@@ -14,13 +14,26 @@
             </div>
         @endif
     
-        <ul class="list-group list-group-flush mb-4">
-            @foreach($products as $product)
-                <li class="list-group-item">
-                    {{ $product->name }} - {{ $product->category->name }} - R$ {{ number_format($product->price, 2) }} - Estoque: {{ $product->quantity }}
-                </li>
-            @endforeach
-        </ul>
+        <table class="table table-hover mb-5">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Estoque</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($products as $product)
+            <tr>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->category->name }}</td>
+                <td>R$ {{ number_format($product->price, 2) }}</td>
+                <td>{{ $product->quantity }}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
     
         <a class="btn btn-primary" href="{{ route('products.create') }}">Adicionar Produto</a>
     </div>

@@ -5,7 +5,7 @@
 @endphp
 
 @section('content')
-    <div class="container mt-4">
+    <div class="container mt-5">
         <h1 class="modal-title mb-4">Listagem de Categorias</h1>
     
         @if(session('success'))

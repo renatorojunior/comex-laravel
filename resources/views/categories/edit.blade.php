@@ -5,7 +5,7 @@
 @endphp
 
 @section('content')
-    <div class="container mt-4 mb-4">
+    <div class="container mt-5 mb-4">
         <h1 class="modal-title mb-4">Editar Categoria</h1>
     
         <form class="row g-3 mb-4" action="{{ route('categories.update', $category->id) }}" method="post">
