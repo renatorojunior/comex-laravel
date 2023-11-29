@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use App\Models\Address;
-use App\Rules\CpfValidation;
+use App\Http\Requests\ClientRequest;
 
 class ClientController extends Controller
 {
@@ -20,22 +20,39 @@ class ClientController extends Controller
         return view('clients.create');
     }
 
-    public function store(Request $request)
+    public function store(ClientRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'cpf' => ['required', 'unique:clients'],
-            'phone' => 'required',
-            'street' => 'required',
-            'number' => 'required',
-            'neighborhood' => 'required',
-            'city' => 'required',
-            'state' => 'required|size:2',
-        ]);
-
         $client = Client::create($request->only(['name', 'cpf', 'phone']));
         $client->address()->create($request->except(['name', 'cpf', 'phone']));
 
         return redirect('/clients')->with('success', 'Cliente adicionado com sucesso!');
     }
+
+    public function edit(Client $client)
+    {
+        $client->load('address');
+        return view('clients.edit', compact('client'));
+    }
+
+    public function update(Request $request, Client $client)
+    {        
+        $client->update($request->only(['name', 'cpf', 'phone']));
+        $client->address->update($request->except(['name', 'cpf', 'phone']));
+
+        return redirect()->route('clients.index')->with('success', 'Cliente atualizado com sucesso!');
+    }
+
+    public function destroy(Client $client)
+    {        
+        $client->address()->delete();
+        
+        $client->delete();
+
+        return redirect()->route('clients.index')->with('success', 'Cliente removido com sucesso!');
+    }
+
+    public function confirmDelete(Client $client)
+    {
+        return view('clients.confirm-delete', compact('client'));
+    }  
 }

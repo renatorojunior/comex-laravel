@@ -20,7 +20,8 @@ $title = 'Clientes';
                     <th scope="col">Nome</th>
                     <th scope="col">CPF</th>
                     <th scope="col">Celular</th>
-                    <th scope="col">Endereço</th>                    
+                    <th scope="col">Endereço</th> 
+                    <th></th>                   
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +36,10 @@ $title = 'Clientes';
                             {{ $client->address->complement ? ''. $client->address->complement.' -' : ''  }} 
                             {{ $client->address->neighborhood }},
                             {{ $client->address->city }}/{{ $client->address->state }}
+                        </td>
+                        <td class="w-15">
+                            <a class="btn btn-secondary ms-auto" href="{{ route('clients.edit', $client->id) }}">Editar</a>    
+                            <a class="btn btn-dark" href="{{ route('clients.confirm-delete', $client->id) }}">Excluir</a>
                         </td>                        
                     </tr>
                     @endforeach

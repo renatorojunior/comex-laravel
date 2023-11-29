@@ -21,16 +21,8 @@ class ProductController extends Controller
         return view('products.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'category_id' => 'required|exists:categories,id',
-            'price' => 'required|numeric|min:0',
-            'quantity' => 'required|integer|min:0',
-        ]);        
-
         Product::create($request->all());
 
         return redirect('/products')->with('success', 'Produto adicionado com sucesso!');

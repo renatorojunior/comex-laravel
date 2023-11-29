@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @php
-    $title = 'Confirmar Exclusão';
+    $title = 'Confirmar Exclusão de Produto';
 @endphp
 
 @section('content')

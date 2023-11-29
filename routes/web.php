@@ -25,5 +25,8 @@ Route::get('/products/{product}/confirm-delete', [ProductController::class, 'con
     ->name('products.confirm-delete');
 
 // Rotas para 'Clientes'
-Route::resource('clients', ClientController::class)->only(['index', 'create', 'store']);
-Route::post('/clients/save', [ClientController::class, 'store'])->name('clients.store');
+Route::resource('clients', ClientController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+Route::get('/clients/{client}/confirm-delete', [ClientController::class, 'confirmDelete'])
+    ->name('clients.confirm-delete');
+Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
+Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
