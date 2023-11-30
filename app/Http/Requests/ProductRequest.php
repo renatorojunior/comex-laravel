@@ -22,7 +22,7 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:50',
+            'name' => 'required|min:2|max:50',
             'price' => 'required|numeric|min:0',
             'quantity' => 'required|integer|min:0|max:1000',
         ];
@@ -32,6 +32,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'name.required' => 'Favor preencher o nome do produto.',
+            'name.min' => 'O nome do produto deve ter no mínimo 2 caracteres.',
             'name.max' => 'O nome do produto deve ter no máximo 50 caracteres.',
             'price.required' => 'Favor preencher o preço do produto.',
             'price.numeric' => 'O preço do produto deve ser um valor numérico.',

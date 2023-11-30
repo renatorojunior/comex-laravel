@@ -14,13 +14,23 @@ $title = 'Editar Produto';
             </div>
         @endif
 
+        @if ($errors->any())
+            <div class="alert alert-danger mb-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('products.update', $product->id) }}" method="post">
             @csrf
             @method('PUT')
             <div class="form-group row mb-2">
                 <div class="form-group col-md-8">
                     <label class="form-control-plaintext" for="name">Nome:</label>
-                    <input class="form-control" type="text" name="name" value="{{ $product->name }}"  required>
+                    <input class="form-control" type="text" name="name" value="{{ $product->name }}" required>
                 </div>            
                 <div class="form-group col-md-4">
                     <label class="form-control-plaintext" for="category_id">Categoria:</label>                

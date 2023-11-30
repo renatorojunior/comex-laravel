@@ -13,6 +13,16 @@ $title = 'Editar Cliente';
                 {{ session('success') }}
             </div>
         @endif
+        
+        @if ($errors->any())
+            <div class="alert alert-danger mb-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <form action="{{ route('clients.update', ['client' => $client->id]) }}" method="post">
             @csrf
@@ -34,29 +44,29 @@ $title = 'Editar Cliente';
             <div class="form-group row mb-2">
                 <div class="form-group col-md-7">
                     <label class="form-control-plaintext" for="street">Rua:</label>
-                    <input class="form-control" type="text" name="address[street]"value="{{ $client->address->street }}" required>
+                    <input class="form-control" type="text" name="street"value="{{ $client->address->street }}" required>
                 </div>
                 <div class="form-group col-md-2">
                     <label class="form-control-plaintext" for="number">Nº:</label>
-                    <input class="form-control" type="text" name="address[number]" value="{{ $client->address->number }}" required>
+                    <input class="form-control" type="text" name="number" value="{{ $client->address->number }}" required>
                 </div>
                 <div class="form-group col-md-3">
                     <label class="form-control-plaintext" for="complement">Complemento:</label>
-                    <input class="form-control" type="text" name="address[complement]" value="{{ $client->address->complement }}">
+                    <input class="form-control" type="text" name="complement" value="{{ $client->address->complement }}">
                 </div>
             </div>
             <div class="form-group row mb-5">
                 <div class="form-group col-md-6">
                     <label class="form-control-plaintext" for="neighborhood">Bairro:</label>
-                    <input class="form-control" type="text" name="address[neighborhood]" value="{{ $client->address->neighborhood }}" required>
+                    <input class="form-control" type="text" name="neighborhood" value="{{ $client->address->neighborhood }}" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label class="form-control-plaintext" for="city">Cidade:</label>
-                    <input class="form-control" type="text" name="address[city]" value="{{ $client->address->city }}" required>
+                    <input class="form-control" type="text" name="city" value="{{ $client->address->city }}" required>
                 </div>
                 <div class="form-group col-md-2">
                     <label class="form-control-plaintext" for="state">Estado:</label>
-                    <select class="form-control" name="address[state]" required>
+                    <select class="form-control" name="state" required>
                         <option value="{{ $client->address->state }}" selected>{{ $client->address->state }}</option>
                         @foreach(['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MS', 'MT', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'] as $state)
                             <option value="{{ $state }}">{{ $state }}</option>

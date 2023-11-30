@@ -34,7 +34,7 @@ class ClientController extends Controller
         return view('clients.edit', compact('client'));
     }
 
-    public function update(Request $request, Client $client)
+    public function update(ClientRequest $request, Client $client)
     {        
         $client->update($request->only(['name', 'cpf', 'phone']));
         $client->address->update($request->except(['name', 'cpf', 'phone']));

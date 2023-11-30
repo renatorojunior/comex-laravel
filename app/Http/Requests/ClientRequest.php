@@ -39,7 +39,7 @@ class ClientRequest extends FormRequest
             'name.required' => 'Favor preencher o nome do cliente.',
             'name.min' => 'O nome do cliente deve ter no mínimo 2 caracteres.',
             'cpf.required' => 'Favor preencher o CPF do cliente.',            
-            'cpf.digits' => 'O CPF do cliente deve ter entre 11 e 14 dígitos.',
+            'cpf.between' => 'O CPF do cliente deve ter entre 11 números e/ou 14 dígitos.',
             'phone.required' => 'Favor preencher o número de celular do cliente.',
             'phone.between' => 'O número de celular do cliente deve conter entre 14 e 16 dígitos.',
             'street.required' => 'Favor preencher a rua do cliente.',
