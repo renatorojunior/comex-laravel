@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\CategoryRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
 class CategoryController extends Controller
 {
+    private $categoryRepository;
+
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
     public function index()
     {
-        $categories = Category::orderBy('name')->get();
+        $categories = $this->categoryRepository->all();
         return view('categories.index', compact('categories'));
     }
 
@@ -26,7 +34,7 @@ class CategoryController extends Controller
         ]);
 
         // Mass Assignment.
-        Category::create(['name' => $request->input('name')]);
+        $this->categoryRepository->create(['name' => $request->input('name')]);
 
         // Redirecionando com mensagem de sucesso.
         return redirect()->route('categories.index')->with('success', 'Categoria adicionada com sucesso!');
@@ -44,7 +52,7 @@ class CategoryController extends Controller
 
     public function delete(Category $category)
     {
-        $category->delete();
+        $this->categoryRepository->delete($category->id);
         return redirect()->route('categories.index')->with('success', 'Categoria removida com sucesso!');
     }
 
@@ -61,7 +69,7 @@ class CategoryController extends Controller
         ]);
 
         // Atualizando a categoria.
-        $category->update(['name' => $request->input('name')]);
+        $this->categoryRepository->update($category->id, ['name' => $request->input('name')]);
 
         // Redirecionando com mensagem de sucesso.
         return redirect()->route('categories.index')->with('success', 'Categoria atualizada com sucesso!');
